@@ -27,8 +27,11 @@ pipeline {
                           echo 'Deploying for Fasting'
 				                       sh '''
                                                                 // npm install
+								mkdir my-express-application && cd my-express-application
+								npm init -f
+								npm install --save express serverless-http
 					                        cd services
-								 npm init -f
+								
 					                        for services in `ls`
 					                     do
 					                           if [ -d "$services" ]; then
