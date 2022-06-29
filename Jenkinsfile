@@ -12,19 +12,12 @@ pipeline {
             steps {
                 echo 'Pull code and build'
                  sh '''
-                mkdir my-express-application && cd my-express-application
+             //   mkdir my-express-application && cd my-express-application
                 npm init -f
                   '''
         }
      }
-        stage('Build') {
-            steps {
-                    echo 'Building the code===='
-                   sh ''' npm install --save express serverless-http '''
-                    echo 'Run tests and publish results'
-                    
-            }
-        }
+       
                stage("Validate before Apply") {
                steps{
                 timeout(time:30, unit:'MINUTES') {
@@ -42,14 +35,15 @@ pipeline {
                         script {
                           echo 'Deploying for Fasting'
 				                       sh '''
-                                  npm install
+                                                               // npm install
 					                        cd services
 					                        for services in `ls`
 					                     do
 					                           if [ -d "$services" ]; then
     					                       echo "The servicename is: $services"
     						                     cd $services
-    						                     npm install
+    						                     npm install --save express serverless-http
+								     npm audit fix --force
     						                     serverless deploy --region ${env.ENVIRONMENT}
     					                       cd ..
     					                      fi
