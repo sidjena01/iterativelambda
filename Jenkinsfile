@@ -37,7 +37,8 @@ pipeline {
 					                           if [ -d "$services" ]; then
     					                       echo "The servicename is: $services"
     						                     cd $services
-    						                     npm install --save express serverless-http
+    						                     
+								     npm install joi
 								     npm audit fix --force
     						                     serverless deploy --region ${env.ENVIRONMENT}
     					                       cd ..
