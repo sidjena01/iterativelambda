@@ -23,6 +23,7 @@ provider:
   runtime: nodejs16.x
   memorySize: 2048
   stage: dev
+  region: us-east-1
   timeout: 15
 
 # you can add packaging information here
@@ -39,12 +40,12 @@ package:
 #    - include-me-dir/**
 
 functions:
-  hello2:
-    handler: api/v1/hello2.hello2
+  app:
+    handler: api/v1/index.handler
     events:
-      - http:
-          path: /hello1
-          method: get
+      - http: ANY /
+       #   path: /hello1
+       #   method: get
 
 custom:
   stage: ${opt:stage, 'self:provider.stage'}
