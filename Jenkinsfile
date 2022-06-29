@@ -8,16 +8,7 @@ pipeline {
      }
     stages {
          
-        stage('NPM Initialization') {
-            steps {
-                echo 'Pull code and build'
-                 sh '''
-             //   mkdir my-express-application && cd my-express-application
-                npm init -f
-                  '''
-        }
-     }
-       
+        
                stage("Validate before Apply") {
                steps{
                 timeout(time:30, unit:'MINUTES') {
@@ -35,8 +26,9 @@ pipeline {
                         script {
                           echo 'Deploying for Fasting'
 				                       sh '''
-                                                               // npm install
+                                                                // npm install
 					                        cd services
+								 npm init -f
 					                        for services in `ls`
 					                     do
 					                           if [ -d "$services" ]; then
