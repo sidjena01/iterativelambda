@@ -1,37 +1,23 @@
-# Welcome to Serverless!
-#
-# This file is the main config file for your service.
-# It's very minimal at this point and uses default values.
-# You can always add more config options for more control.
-# We've included some commented out config examples here.
-# Just uncomment any of them to get that config option.
-#
-# For full config options, check the docs:
-#    docs.serverless.com
-#
-# Happy Coding!
 
-service: jenkinsFasting
-# app and org for use with dashboard.serverless.com
 
-# You can pin your service to only deploy with a specific Serverless version
-# Check out our docs for more details
-frameworkVersion: '3'
+#service: jenkinsFasting
 
-provider:
-  name: aws
-  runtime: nodejs16.x
-  memorySize: 2048
-  stage: dev
-  region: us-east-1
-  timeout: 15
+#frameworkVersion: '3'
 
-# you can add packaging information here
-package:
-  individually: true
-  exclude:
-    - .git/**
-    - tests/**
+#provider:
+#  name: aws
+#  runtime: nodejs16.x
+#  memorySize: 2048
+#  stage: dev
+#  region: us-east-1
+ # timeout: 15
+
+
+#package:
+#  individually: true
+#  exclude:
+#    - .git/**
+#    - tests/**
 
 #  patterns:
 #    - '!exclude-me.js'
@@ -39,18 +25,36 @@ package:
 #    - include-me.js
 #    - include-me-dir/**
 
-functions:
-  app:
-    handler: api/v1/index.handler
-    events:
-      - http: ANY /
+#functions:
+#  app:
+#    handler: api/v1/index.handler
+#    events:
+#      - http: ANY /
        #   path: /hello1
        #   method: get
 
-custom:
-  stage: ${opt:stage, 'self:provider.stage'}
-  baseUrl: v1
+#custom:
+ # stage: ${opt:stage, 'self:provider.stage'}
+#  baseUrl: v1
 
-plugins:
-  - serverless-offline
-  - serverless-package-external
+#plugins:
+#  - serverless-offline
+#  - serverless-package-external
+
+
+
+
+service: my-express-application
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: dev
+  region: us-east-1
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
