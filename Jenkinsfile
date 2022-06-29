@@ -26,7 +26,7 @@ pipeline {
                         script {
                           echo 'Deploying for Fasting'
 				                       sh '''
-                                                                // npm install
+                                                              
 								mkdir my-express-application && cd my-express-application
 								npm init -f
 								npm install --save express serverless-http
